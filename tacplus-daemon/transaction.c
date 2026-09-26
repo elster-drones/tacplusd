@@ -91,9 +91,9 @@ transaction_attrib_new(const char *av_pair)
 	if (! attr)
 		goto malloc_fail;
 
-	char *mand_sep = strchr(av_pair, '=');
-	char *opt_sep  = strchr(av_pair, '*');
-	char *sep = NULL;
+	const char *mand_sep = strchr(av_pair, '=');
+	const char *opt_sep  = strchr(av_pair, '*');
+	const char *sep = NULL;
 
 	/*
 	 * If both separators are found it means that one or both of them is
@@ -146,7 +146,7 @@ void transaction_attrib_free(struct transaction_attrib **head)
 
 struct transaction_attrib *transaction_attrib_from_tac_attrib(const struct tac_attrib *tac_attr)
 {
-	struct transaction_attrib *head = NULL, *tail;
+	struct transaction_attrib *head = NULL, *tail = NULL;
 
 	for (; tac_attr != NULL; tac_attr = tac_attr->next) {
 		struct transaction_attrib *attr = transaction_attrib_new(tac_attr->attr);
